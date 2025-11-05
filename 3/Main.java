@@ -17,7 +17,6 @@ public class Main {
         int start = sc.nextInt();
         int end   = sc.nextInt();
         sc.nextInt();
-        
         list.invert(start, end);
         
         Node curr = list.getHead();

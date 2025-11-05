@@ -3,7 +3,53 @@ public class Lista003 extends LinearList implements LinearListInterface {
 
     @Override
     public boolean insertOrd(Node node) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (node == null || node.getData() == null) return false;
+
+        // Assume integers are stored in nodes (per Main.java). Avoid duplicates.
+        Integer value = (Integer) node.getData();
+
+        // If empty, just append
+        if (this.isEmpty()) {
+            this.append(node);
+            return true;
+        }
+
+        // Check if value already exists
+        Node curr = this.getHead();
+        while (curr != null) {
+            if (((Integer) curr.getData()).equals(value)) {
+                return false; // duplicate
+            }
+            curr = curr.getNext();
+        }
+
+        // Insert in order (ascending)
+        Node head = this.getHead();
+        // Insert before head
+        if (value < (Integer) head.getData()) {
+            this.insert(node);
+            return true;
+        }
+
+        Node prev = null;
+        curr = head;
+        while (curr != null && (Integer) curr.getData() < value) {
+            prev = curr;
+            curr = curr.getNext();
+        }
+
+        if (curr == null) {
+            // reached end -> append
+            this.append(node);
+        } else {
+            // insert between prev and curr
+            prev.setNext(node);
+            node.setPrev(prev);
+            node.setNext(curr);
+            curr.setPrev(node);
+        }
+
+        return true;
     }
 
     @Override
@@ -13,7 +59,7 @@ public class Lista003 extends LinearList implements LinearListInterface {
 
     @Override
     public LinearListInterface invert(int start, int end) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -66,37 +112,37 @@ public class Lista003 extends LinearList implements LinearListInterface {
     @Override
     public LinearListInterface union(LinearListInterface list) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Node[] removeSupVal(int limit) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public LinearListInterface merge(LinearListInterface list) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Node[] removeInfVal(int limit) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public boolean equalsList(LinearListInterface list) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public LinearListInterface[] divide() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
