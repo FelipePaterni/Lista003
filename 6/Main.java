@@ -6,7 +6,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Lista003 l1 = new Lista003();
-        Lista003 l2 = new Lista003();
 
         while (true) {
             int v = sc.nextInt();
@@ -14,15 +13,10 @@ public class Main {
             l1.append(new Node<>(v));
         }
 
-        while (true) {
-            int v = sc.nextInt();
-            if (v == -1) break;
-            l2.append(new Node<>(v));
-        }
+        int limit = sc.nextInt();
+        l1.removeSupVal(limit);
 
-        Lista003 un = (Lista003) l1.union(l2);
-
-        Node curr = un.getHead();
+        Node curr = l1.getHead();
         while (curr != null) {
             System.out.println(curr.getData());
             curr = curr.getNext();
