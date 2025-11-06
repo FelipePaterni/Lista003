@@ -22,7 +22,7 @@ public class Main {
 
         boolean result = l1.equalsList(l2);
 
-        System.out.println(result ? "verdadeiro" : "falso");
+        System.out.println(result ? "Verdadeiro" : "Falso");
 
         sc.close();
     }

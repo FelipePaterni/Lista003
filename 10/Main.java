@@ -16,17 +16,27 @@ public class Main {
         Lista003 pares = result[0];
         Lista003 impares = result[1];
 
+        // imprimir pares
         Node curr = pares.getHead();
+        boolean first = true;
         while (curr != null) {
-            System.out.println(curr.getData());
+            if (!first) System.out.print(",");
+            System.out.print(curr.getData());
+            first = false;
             curr = curr.getNext();
         }
+        System.out.println();
 
+        // imprimir impares
         curr = impares.getHead();
+        first = true;
         while (curr != null) {
-            System.out.println(curr.getData());
+            if (!first) System.out.print(",");
+            System.out.print(curr.getData());
+            first = false;
             curr = curr.getNext();
         }
+        System.out.println();
 
         sc.close();
     }

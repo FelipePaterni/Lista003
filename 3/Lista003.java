@@ -1,73 +1,76 @@
-@SuppressWarnings({"rawtypes","unchecked"})
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class Lista003 extends LinearList implements LinearListInterface {
 
     @Override
     public boolean insertOrd(Node node) {
-     throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Node[] removeDup() {
-         throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-   @Override
-public LinearListInterface invert(int start, int end) {
-    if (start < 1 || end < 1 || start > end)
-        throw new IllegalArgumentException("Índices inválidos");
+    @Override
+    public LinearListInterface invert(int start, int end) {
+        if (start < 1 || end < 1 || start > end)
+            throw new IllegalArgumentException("Índices inválidos");
 
-    Node head = getHead();
-    if (head == null) return this;
+        Node head = getHead();
+        if (head == null)
+            return this;
 
-    // localizar início
-    Node s = head;
-    int pos = 1;
-    while (s != null && pos < start) {
-        s = s.getNext();
-        pos++;
+        // localizar início
+        Node s = head;
+        int pos = 1;
+        while (s != null && pos < start) {
+            s = s.getNext();
+            pos++;
+        }
+        if (s == null)
+            return this; // start > comprimento
+
+        // localizar fim
+        Node e = s;
+        while (e != null && pos < end) {
+            e = e.getNext();
+            pos++;
+        }
+        if (e == null)
+            return this; // end > comprimento
+
+        Node before = s.getPrev();
+        Node after = e.getNext();
+
+        // inverte o bloco
+        Node curr = s;
+        Node tmp = null;
+        while (curr != after) {
+            tmp = curr.getPrev();
+            curr.setPrev(curr.getNext());
+            curr.setNext(tmp);
+            curr = curr.getPrev();
+        }
+
+        // após inverter, s é final do trecho e e é início
+        if (before != null) {
+            before.setNext(e);
+            e.setPrev(before);
+        } else {
+            // e vira head
+            e.setPrev(null);
+        }
+
+        if (after != null) {
+            after.setPrev(s);
+            s.setNext(after);
+        } else {
+            // s vira tail
+            s.setNext(null);
+        }
+
+        return this;
     }
-    if (s == null) return this;   // start > comprimento
-
-    // localizar fim
-    Node e = s;
-    while (e != null && pos < end) {
-        e = e.getNext();
-        pos++;
-    }
-    if (e == null) return this;   // end > comprimento
-
-    Node before = s.getPrev();
-    Node after  = e.getNext();
-
-    // inverte o bloco
-    Node curr = s;
-    Node tmp = null;
-    while (curr != after) {
-        tmp = curr.getPrev();
-        curr.setPrev(curr.getNext());
-        curr.setNext(tmp);
-        curr = curr.getPrev();
-    }
-
-    // após inverter, s é final do trecho e e é início
-    if (before != null) {
-        before.setNext(e);
-        e.setPrev(before);
-    } else {
-        // e vira head
-        e.setPrev(null);
-    }
-
-    if (after != null) {
-        after.setPrev(s);
-        s.setNext(after);
-    } else {
-        // s vira tail
-        s.setNext(null);
-    }
-
-    return this;
-}
 
     @Override
     public LinearListInterface repItens(LinearListInterface list) {

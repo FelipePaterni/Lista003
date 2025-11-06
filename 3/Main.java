@@ -8,22 +8,23 @@ public class Main {
 
         while(true) {
             int v = sc.nextInt();
-            if (v==-1) {
+            if(v==-1) {
                 break;
             }
             list.append(new Node<>(v));
         }
 
         int start = sc.nextInt();
-        int end   = sc.nextInt();
+        int end = sc.nextInt();
         sc.nextInt();
-        list.invert(start, end);
-        
+
+        list.invert(start,end);
+
         Node curr = list.getHead();
-        while (curr != null) {
-            System.out.println(curr.getData());
-            curr = curr.getNext();
+        while(curr != null) {
+			System.out.println(curr.getData());
+			curr = curr.getNext();
         }
-        sc.close();
+		sc.close();
     }
 }
